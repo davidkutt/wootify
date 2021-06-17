@@ -1,10 +1,10 @@
 <template>
-
+<h1> No Items found</h1>
 </template>
 
 <script>
 export default {
-  name: "ItemsEmptyComponent"
+  name: "ItemsEmpty"
 };
 </script>
 

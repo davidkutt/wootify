@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-container>
+    <!-- <Gallery></Gallery> -->
+    <ItemList :title="'Alle Artikel'"></ItemList>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+
+import ItemList from "@/components/ItemList";
+import { MutationsEnum } from "@/enums/vuex/MutationsEnum";
 
 export default {
   name: "Home",
+  data: () => ({
+    products: []
+  }),
   components: {
-    HelloWorld,
+    ItemList
   },
+  created() {
+    this.$store.dispatch(MutationsEnum.INIT_PRODUCTS).then (()=> {
+      this.$store.dispatch(MutationsEnum.FILTER, "");
+    });
+  },
+  methods: {}
 };
 </script>

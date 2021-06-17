@@ -18,12 +18,21 @@ export default {
   components: {
     ItemList
   },
-  methods: {
-
+  computed: {
+    cartItems() {
+      return this.$store.getters.getFilters;
+    }
+  },
+  watch: {
+    $route(to) {
+      this.$store.dispatch(MutationsEnum.FILTER, to.params.filter);
+    }
   },
   created() {
-    this.$store.dispatch(MutationsEnum.FILTER, FilterTypes.SALE);
-    this.$store.dispatch(MutationsEnum.INIT_PRODUCTS);
-  },
+    this.$store.dispatch(MutationsEnum.INIT_PRODUCTS).then (()=> {
+      const filter = this.$route.params?.filter ? this.$route.params?.filter : FilterTypes.SALE;
+      this.$store.dispatch(MutationsEnum.FILTER, filter);
+    });
+  }
 };
 </script>
