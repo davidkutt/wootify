@@ -11,10 +11,10 @@ export default new Vuex.Store({
     categories: [],
     cartItems: [],
     searchTerm: "",
-    filter: ""
+    filter: "",
+    navigationOpen: false
   },
   mutations: {
-    // synchronous
     setProducts(state, payload) {
       state.products = payload;
     },
@@ -29,10 +29,15 @@ export default new Vuex.Store({
     },
     filter(state, payload) {
       state.filter = payload;
+    },
+    openMenu(state, payload) {
+      state.openMenu = payload;
+    },
+    navigationOpen(state, payload) {
+      state.navigationOpen = payload;
     }
   },
   actions: {
-    // ASYNC
     async initProducts(state) {
       const wooService = new WooService();
       const products = await wooService.getProducts();
@@ -54,6 +59,9 @@ export default new Vuex.Store({
     },
     async filter(state, payload) {
       state.commit(MutationsEnum.FILTER, payload);
+    },
+    async navigationOpen(state, payload) {
+      state.commit(MutationsEnum.NAVIGATION_OPEN, payload);
     }
   },
   modules: {},
@@ -61,6 +69,7 @@ export default new Vuex.Store({
     getProducts: state => state.products,
     getCategories: state => state.categories,
     getCartItems: state => state.cartItems,
-    getFilters: state => state.filter
+    getFilters: state => state.filter,
+    navigationOpen: state => state.navigationOpen
   }
 });

@@ -5,5 +5,6 @@ export const MutationsEnum = {
   SEARCH: "search",
   FILTER: "filter",
   INIT_PRODUCTS: "initProducts",
-  INIT_CATEGORIES: "initCategories"
+  INIT_CATEGORIES: "initCategories",
+  NAVIGATION_OPEN: "navigationOpen"
 };

@@ -7,7 +7,7 @@
 
 <script>
 
-import ItemList from "@/components/ItemList";
+import ItemList from "@/components/Items/ItemList";
 import { MutationsEnum } from "@/enums/vuex/MutationsEnum";
 
 export default {
@@ -19,7 +19,7 @@ export default {
     ItemList
   },
   created() {
-    this.$store.dispatch(MutationsEnum.INIT_PRODUCTS).then (()=> {
+    this.$store.dispatch(MutationsEnum.INIT_PRODUCTS).then(() => {
       this.$store.dispatch(MutationsEnum.FILTER, "");
     });
   },
